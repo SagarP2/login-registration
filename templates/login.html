@@ -5,40 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background: #f4f8fb;
+        }
+        .split-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .left-panel {
+            flex: 1;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .right-panel {
+            flex: 1;
+            background: #1877f2;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .login-form {
+            width: 100%;
+            max-width: 350px;
+        }
+        .login-form .form-control {
+            border-radius: 25px;
+            padding: 0.75rem 1.25rem;
+            border: none;
+            margin-bottom: 1rem;
+        }
+        .login-form .btn-primary {
+            border-radius: 25px;
+            width: 100%;
+            background: #ffb400;
+            border: none;
+            color: #222;
+            font-weight: bold;
+        }
+        .login-form .btn-primary:hover {
+            background: #ffa000;
+        }
+        .login-form .btn-outline-light {
+            border-radius: 25px;
+            width: 100%;
+            margin-top: 0.5rem;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+        .login-form .btn-outline-light:hover {
+            background: #fff;
+            color: #1877f2;
+        }
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        .welcome-subtitle{
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            margin-top: -1.5rem;
+        }
+        .form-label {
+            display: none;
+        }
+        .alert {
+            border-radius: 20px;
+        }
+        .register-link {
+            color: #fff;
+            text-decoration: underline;
+        }
+        /* Optional: Responsive */
+        @media (max-width: 768px) {
+            .split-container {
+                flex-direction: column;
+            }
+            .left-panel, .right-panel {
+                flex: unset;
+                min-height: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h2 class="mt-5">Login</h2>
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.email.label(class="form-label") }}
-                {{ form.email(class="form-control") }}
-                {% for error in form.email.errors %}
-                    <div class="alert alert-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="form-group">
-                {{ form.password.label(class="form-label") }}
-                {{ form.password(class="form-control") }}
-                {% for error in form.password.errors %}
-                    <div class="alert alert-danger">{{ error }}</div>
-                {% endfor %}
-            </div>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-primary") }}
-            </div>
-        </form>
-        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <div class="alert alert-warning">
-                    {% for message in messages %}
-                        {{ message }}<br>
+    <div class="split-container">
+        
+        <div class="right-panel">
+            <div class="login-form">
+                <div class="welcome-title text-center">Welcome Back</div>
+                <div class="welcome-subtitle text-center">Hey! Good to see you again</div>
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    {{ form.email(class="form-control", placeholder="Your e-mail") }}
+                    {% for error in form.email.errors %}
+                        <div class="alert alert-danger">{{ error }}</div>
                     {% endfor %}
+                    {{ form.password(class="form-control", placeholder="Password") }}
+                    {% for error in form.password.errors %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                    {{ form.submit(class="btn btn-primary", value="Sign in") }}
+                </form>
+                <div class="text-center mt-3">
+                    <span>Don't have an account? <a class="register-link" href="{{ url_for('register') }}">Create account</a></span>
                 </div>
-            {% endif %}
-        {% endwith %}
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="alert alert-warning mt-3">
+                            {% for message in messages %}
+                                {{ message }}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="left-panel">
+    <img src="image/Login.png" alt="Login Illustration" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+</div>
     </div>
 </body>
 </html>
