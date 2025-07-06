@@ -99,7 +99,8 @@
     <div class="split-container">
         
         <div class="right-panel">
-            <div class="login-form">
+            <div class="login-form position-relative">
+                
                 <div class="welcome-title text-center">Welcome Back</div>
                 <div class="welcome-subtitle text-center">Hey! Good to see you again</div>
                 <form method="POST" action="">
@@ -129,7 +130,12 @@
             </div>
         </div>
         <div class="left-panel">
-    <img src="{{ url_for('static', filename='image/login-illustration.png') }}" alt="Login Illustration" style="max-width:80%; height:auto;">
+            <a href="{{ url_for('index') }}" 
+                   class="close" 
+                   style="position: absolute; top: 10px; right: 10px; font-size: 2rem; color: #000000; text-decoration: none; z-index: 10;">
+                    &times;
+                </a>
+    <img src="{{ url_for('static', filename='images/app-development.png') }}" alt="Login Illustration" style="max-width:100%; height:auto;">
 </div>
     </div>
 </body>

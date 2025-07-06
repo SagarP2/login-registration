@@ -97,12 +97,17 @@
 <body>
     <div class="split-container">
        <div class="left-panel">
-    <img src="{{ url_for('static', filename='image/sigh-up.png') }}" alt="Login Illustration" style="max-width:80%; height:auto;">
+    <img src="{{ url_for('static', filename='images/welcome-new-employee.png') }}" alt="Login Illustration" style="max-width:100%; height:auto;">
 </div>
         <div class="right-panel">
+            <a href="{{ url_for('index') }}" 
+                   class="close" 
+                   style="position: absolute; top: 10px; right: 10px; font-size: 2rem; color: #1f1e1e; text-decoration: none; z-index: 10;">
+                    &times;
+                </a>
             <div class="register-form">
                 <div class="welcome-title text-center">Sign Up</div>
-                <div class="welcome-subtitle text-center">Hello! let's jon with us</div>
+                <div class="welcome-subtitle text-center">Hello! let's join with us</div>
                 <form method="POST" action="">
                     {{ form.hidden_tag() }}
                     {{ form.name(class="form-control", placeholder="Your name") }}
